@@ -77,7 +77,7 @@ mp.events.add("playerEnterColshape", (shape) => {
         break;
 
       case null:
-        mp.events.call("jobDrugmaker", JOB_START);
+        mp.events.callRemote("jobDrugmaker", JOB_START);
         mp.gui.chat.push("case null jobDrugMaker, JOB START");
         break;
 

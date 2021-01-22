@@ -126,4 +126,3 @@ mp.events.add("cameraTrigger", () => {
     // });
   }
 });
-

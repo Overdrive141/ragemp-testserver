@@ -110,7 +110,7 @@ let redoEditorObjects = []; //not used yet
  */
 const bindKeys = {
     KEY_ENTER: 0x0D,
-    KEY_F2: 0x71,
+    KEY_F5: 0x74,
     KEY_1: 0x31,
     KEY_2: 0x32,
     KEY_3: 0x33,
@@ -682,7 +682,7 @@ function EndMapEditor()
     undoEditorObjects = [];
 }
 
-mp.keys.bind(bindKeys.KEY_F2, false, function()
+mp.keys.bind(bindKeys.KEY_F5, false, function()
 {
     editorStart = !editorStart;
 

@@ -1,4 +1,4 @@
-var getNormalizedVector = function(vector) {
+var getNormalizedVector = function (vector) {
   var mag = Math.sqrt(
     vector.x * vector.x + vector.y * vector.y + vector.z * vector.z
   );
@@ -7,7 +7,7 @@ var getNormalizedVector = function(vector) {
   vector.z = vector.z / mag;
   return vector;
 };
-var getCrossProduct = function(v1, v2) {
+var getCrossProduct = function (v1, v2) {
   var vector = new mp.Vector3(0, 0, 0);
   vector.x = v1.y * v2.z - v1.z * v2.y;
   vector.y = v1.z * v2.x - v1.x * v2.z;
@@ -15,23 +15,23 @@ var getCrossProduct = function(v1, v2) {
   return vector;
 };
 var bindVirtualKeys = {
-  F2: 0x71
+  F2: 0x71,
 };
 var bindASCIIKeys = {
   Q: 69,
   E: 81,
   LCtrl: 17,
-  Shift: 16
+  Shift: 16,
 };
-mp.game.graphics.notify('~r~NoClip ~w~by ~b~Morbo');
+mp.game.graphics.notify("~r~NoClip ~w~by ~b~Morbo");
 var isNoClip = false;
 var noClipCamera;
 var shiftModifier = false;
 var controlModifier = false;
 var localPlayer = mp.players.local;
-mp.keys.bind(bindVirtualKeys.F2, true, function() {
+mp.keys.bind(bindVirtualKeys.F2, true, function () {
   isNoClip = !isNoClip;
-  mp.game.ui.displayRadar(!isNoClip);
+  //mp.game.ui.displayRadar(!isNoClip);
   if (isNoClip) {
     startNoClip();
   } else {
@@ -39,14 +39,14 @@ mp.keys.bind(bindVirtualKeys.F2, true, function() {
   }
 });
 function startNoClip() {
-  mp.game.graphics.notify('NoClip ~g~activated');
+  mp.game.graphics.notify("NoClip ~g~activated");
   var camPos = new mp.Vector3(
     localPlayer.position.x,
     localPlayer.position.y,
     localPlayer.position.z
   );
   var camRot = mp.game.cam.getGameplayCamRot(2);
-  noClipCamera = mp.cameras.new('default', camPos, camRot, 45);
+  noClipCamera = mp.cameras.new("default", camPos, camRot, 45);
   noClipCamera.setActive(true);
   mp.game.cam.renderScriptCams(true, false, 0, true, false);
   localPlayer.freezePosition(true);
@@ -55,7 +55,7 @@ function startNoClip() {
   localPlayer.setCollision(false, false);
 }
 function stopNoClip() {
-  mp.game.graphics.notify('NoClip ~r~disabled');
+  mp.game.graphics.notify("NoClip ~r~disabled");
   if (noClipCamera) {
     localPlayer.position = noClipCamera.getCoord();
     localPlayer.setHeading(noClipCamera.getRot(2).z);
@@ -68,7 +68,7 @@ function stopNoClip() {
   localPlayer.setVisible(true, false);
   localPlayer.setCollision(true, false);
 }
-mp.events.add('render', function() {
+mp.events.add("render", function () {
   if (!noClipCamera || mp.gui.cursor.visible) {
     return;
   }

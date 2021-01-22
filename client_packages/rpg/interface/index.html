@@ -279,6 +279,380 @@
         </div>
       </div>
     </div>
+    <!-- MDC Charges End -->
+
+    <!-- Quiz Start -->
+    <div class="screen" id="quiz">
+      <div class="quiz">
+        <div
+          class="info-box info-box-wide"
+          style="width: 950rem !important"
+          id="reg_quiz__header"
+        >
+          <!-- <div class="reg-quiz-box-1" id="reg_quiz__box_1" style="display: none;"> -->
+          <div class="info-box-header" id="reg_quiz__header_title">
+            Registration Quiz
+          </div>
+
+          <div class="info-box-height" id="reg__quiz__box_1">
+            <div class="info-box-header-small">Server Rules</div>
+            You can find our server rulebook over on our Discord. Please go to
+            our website at https://gtarp.club to find our Discord link.<br />
+            <br />
+            • Please note that if you fail the quiz, you will be able to
+            reattempt in 30 minutes. <br />
+            • However, if you fail it three times or more then you will not be
+            able to redo the quiz for 24 hours. Therefore, we recommend that you
+            read the rules before attempting this quiz.<br />
+            <br />
+            If you are an old player, you also need to attempt this quiz as we
+            are a roleplaying server and we had no whitelisting system for a
+            long time to allow new people to come and learn roleplay at Role
+            Play Club.<br />
+            <br />
+            <div class="info-box-header-small">Important</div>
+            Please click the button below to start the quiz. You will not be
+            able to come back to this page once you click Start Quiz.
+
+            <div class="info-box-btns">
+              <span
+                class="btn-medium btn-purple"
+                onclick="quiz.show('reg__quiz__box_2', 'reg__quiz__box_1')"
+                >Start Quiz</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="info-box-height"
+            id="reg__quiz__box_2"
+            style="display: none"
+          >
+            Please read the questions carefully before attempting the quiz. You
+            will not be able to return to this page once you click Next.<br />
+            <!-- <div class="info-box-header-small">Registration Quiz Part 1</div> -->
+          </div>
+
+          <div
+            class="info-box-height"
+            id="reg__quiz__box_3"
+            style="display: none"
+          >
+            <!-- <div class="info-box-header-small">Registration Quiz Part 2</div> -->
+            <div class="info-box-subheader">
+              6. Which one of the 4 answers below is a clear breach of
+              power-gaming?
+            </div>
+            <input
+              type="radio"
+              id="reg_quiz_test__row1"
+              name="reg_quiz_test__question_6"
+              value="0"
+            />
+            <label for="reg_quiz_test__row1" class="info-box-link-radio"
+              >Tom punches the man, attempting to knock him to the floor.</label
+            ><br />
+            <input
+              type="radio"
+              id="reg_quiz_test__row2"
+              name="reg_quiz_test__question_6"
+              value="1"
+            />
+            <label for="reg_quiz_test__row2" class="info-box-link-radio"
+              >Tom breaks a set of handcuffs off of his wrist using his pure
+              strength and starts to run away.</label
+            ><br />
+            <input
+              type="radio"
+              id="reg_quiz_test__row3"
+              name="reg_quiz_test__question_6"
+              value="0"
+            />
+            <label for="reg_quiz_test__row3" class="info-box-link-radio"
+              >Tom speeds through a red light and looses control of the
+              vehicle.</label
+            ><br />
+            <input
+              type="radio"
+              id="reg_quiz_test__row4"
+              name="reg_quiz_test__question_6"
+              value="0"
+            />
+            <label for="reg_quiz_test__row4" class="info-box-link-radio"
+              >Tom hands his keys to another person, allowing them to drive his
+              car.</label
+            ><br />
+
+            <div class="info-box-subheader">
+              7. What is an example of breaking the Fail-RP rule?
+            </div>
+            <input
+              type="radio"
+              id="reg_quiz_test__row5"
+              name="reg_quiz_test__question_7"
+              value="0"
+            />
+            <label for="reg_quiz_test__row5" class="info-box-link-radio"
+              >Alex begins robbing a bank with his gang.</label
+            ><br />
+            <input
+              type="radio"
+              id="reg_quiz_test__row6"
+              name="reg_quiz_test__question_7"
+              value="1"
+            />
+            <label for="reg_quiz_test__row6" class="info-box-link-radio"
+              >Alex doesn't let another player take his weapons when he has a
+              gun to his head.</label
+            ><br />
+            <input
+              type="radio"
+              id="reg_quiz_test__row7"
+              name="reg_quiz_test__question_7"
+              value="0"
+            />
+            <label for="reg_quiz_test__row7" class="info-box-link-radio"
+              >Alex drops all of his ammo for his friend because he didn't have
+              much left.</label
+            ><br />
+            <input
+              type="radio"
+              id="reg_quiz_test__row8"
+              name="reg_quiz_test__question_7"
+              value="0"
+            />
+            <label for="reg_quiz_test__row8" class="info-box-link-radio"
+              >Alex lets his mate drive his car for him because he can't be
+              bothered to drive.</label
+            ><br />
+
+            <div class="info-box-subheader">
+              8. Jimmy had a gunfight with Bobby, where Bobby kills him
+              eventually. Jimmy respawned in the hospital and then proceeds to
+              go back to Bobby to kill him. What is wrong with this situation?
+            </div>
+            <input
+              type="radio"
+              id="reg_quiz_test__row9"
+              name="reg_quiz_test__question_8"
+              value="0"
+            />
+            <label for="reg_quiz_test__row9" class="info-box-link-radio"
+              >Jimmy broke the FearRP rule.</label
+            ><br />
+            <input
+              type="radio"
+              id="reg_quiz_test__row10"
+              name="reg_quiz_test__question_8"
+              value="0"
+            />
+            <label for="reg_quiz_test__row10" class="info-box-link-radio"
+              >Jimmy broke the FailRP rule</label
+            ><br />
+            <input
+              type="radio"
+              id="reg_quiz_test__row11"
+              name="reg_quiz_test__question_8"
+              value="1"
+            />
+            <label for="reg_quiz_test__row11" class="info-box-link-radio"
+              >Jimmy broke NLR.</label
+            ><br />
+            <input
+              type="radio"
+              id="reg_quiz_test__row12"
+              name="reg_quiz_test__question_8"
+              value="0"
+            />
+            <label for="reg_quiz_test__row12" class="info-box-link-radio"
+              >Jimmy is Power Gaming.</label
+            ><br />
+
+            <!--Question 4 -->
+            <div class="info-box-subheader">
+              9. Which one of the 4 answers below is a clear breach of
+              meta-gaming?
+            </div>
+            <input
+              type="radio"
+              id="reg_quiz_test__row13"
+              name="reg_quiz_test__question_9"
+              value="0"
+            />
+            <label for="reg_quiz_test__row13" class="info-box-link-radio"
+              >Ben uses his iPad Radio to call in back-up.</label
+            ><br />
+            <input
+              type="radio"
+              id="reg_quiz_test__row14"
+              name="reg_quiz_test__question_9"
+              value="0"
+            />
+            <label for="reg_quiz_test__row14" class="info-box-link-radio"
+              >Ben looks at Bobs clothes and assumes he knows what gang he is a
+              part of.</label
+            ><br />
+            <input
+              type="radio"
+              id="reg_quiz_test__row15"
+              name="reg_quiz_test__question_9"
+              value="1"
+            />
+            <label for="reg_quiz_test__row15" class="info-box-link-radio"
+              >Bob reads that Ben has a pistol in OOC chat, uses this to his
+              advantage and later on robs him for the Pistol.</label
+            ><br />
+            <input
+              type="radio"
+              id="reg_quiz_test__row16"
+              name="reg_quiz_test__question_9"
+              value="0"
+            />
+            <label for="reg_quiz_test__row16" class="info-box-link-radio"
+              >Ben laughs at Jims comment.</label
+            ><br />
+
+            <!--Q10-->
+
+            <div class="info-box-subheader">
+              10. You run a red light and a cop starts following you. He catches
+              up with you after a few minutes and he signals you to pull over.
+              However, you don't stop and run away, the officer calls backup and
+              they all start to chase you. Eventually, they pit your car and
+              your car flips over. What would you do in this situation?
+            </div>
+            <input
+              type="radio"
+              id="reg_quiz_test__row17"
+              name="reg_quiz_test__question_10"
+              value="0"
+            />
+            <label for="reg_quiz_test__row17" class="info-box-link-radio"
+              >I would get out of my car, use a car jack to flip my car back,
+              and attempt to flee.</label
+            ><br />
+            <input
+              type="radio"
+              id="reg_quiz_test__row18"
+              name="reg_quiz_test__question_10"
+              value="0"
+            />
+            <label for="reg_quiz_test__row18" class="info-box-link-radio"
+              >I would RP my injuries and stay inside my car, while the car is
+              upside down.</label
+            ><br />
+            <input
+              type="radio"
+              id="reg_quiz_test__row19"
+              name="reg_quiz_test__question_10"
+              value="1"
+            />
+            <label for="reg_quiz_test__row19" class="info-box-link-radio"
+              >I would restart the game to avoid the situation.</label
+            ><br />
+            <input
+              type="radio"
+              id="reg_quiz_test__row20"
+              name="reg_quiz_test__question_10"
+              value="0"
+            />
+            <label for="reg_quiz_test__row20" class="info-box-link-radio"
+              >I would RP my injuries and get out of the car.</label
+            ><br />
+            <!--Question Goes Here-->
+            <div class="info-box-btns">
+              <span
+                class="btn-medium btn-purple"
+                onclick="quiz.next(2, 'reg__quiz__box_4', 'reg__quiz__box_3')"
+                >Next</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="info-box-height"
+            id="reg__quiz__box_4"
+            style="display: none"
+          >
+            <div class="info-box-subheader">Why did you take this test?</div>
+            <input
+              type="radio"
+              id="reg_quiz_test__row21"
+              name="reg_quiz_test__question_11"
+              value="0"
+            />
+            <label for="reg_quiz_test__row21" class="info-box-link-radio"
+              >I don't know, I had to take it to join the server.</label
+            ><br />
+            <input
+              type="radio"
+              id="reg_quiz_test__row22"
+              name="reg_quiz_test__question_11"
+              value="1"
+            />
+            <label for="reg_quiz_test__row22" class="info-box-link-radio"
+              >I want to show that I understand the basic rules of the
+              server.</label
+            ><br />
+            <input
+              type="radio"
+              id="reg_quiz_test__row23"
+              name="reg_quiz_test__question_11"
+              value="0"
+            />
+            <label for="reg_quiz_test__row23" class="info-box-link-radio"
+              >I was bored so I joined the server for some fun.</label
+            ><br />
+
+            <div class="info-box-subheader">
+              Do you understand that if you break any rules, it could lead to
+              you getting banned from the server?
+            </div>
+            <input
+              type="radio"
+              id="reg_quiz_test__row24"
+              name="reg_quiz_test__question_12"
+              value="1"
+            />
+            <label for="reg_quiz_test__row24" class="info-box-link-radio"
+              >I agree.</label
+            ><br />
+            <input
+              type="radio"
+              id="reg_quiz_test__row25"
+              name="reg_quiz_test__question_12"
+              value="0"
+            />
+            <label for="reg_quiz_test__row25" class="info-box-link-radio"
+              >I disagree.</label
+            ><br />
+            <div class="info-box-btns">
+              <span class="btn-medium btn-purple" onclick="quiz.submit()"
+                >Submit</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="info-box-height"
+            id="reg__quiz__box_success"
+            style="display: none"
+          >
+            <div class="info-box-header">Congratulations!</div>
+            <br />You have passed the registration roleplay quiz!<br />
+            Please read the rules on our server rulebook once again before
+            starting your roleplaying journey. We hope you enjoy your experience
+            here at Role Play Club.
+            <div class="info-box-btns">
+              <span class="btn-medium btn-purple" onclick="quiz.close()"
+                >Ok</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!--Scripts-->
     <script src="scripts.js" type="text/javascript"></script>
   </body>

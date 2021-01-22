@@ -7,18 +7,49 @@ require("./rpg/police_s");
 require("./rpg/druglab_s");
 require("./rpg/vehicles_s");
 require("./rpg/gangzones_s");
+require("./rpg/carchopping_s");
+require("./rpg/quiz_s");
+require("./rpg/blackout_s.js");
 //require("./rpg/blackmarket_s");
 // require("./MapEditorServer.js")
 
 global.gm = {};
 
+global.JOB_START = 1;
+global.JOB_STOP = 0;
+
+global.JOB_CARCHOPPING = 9;
+
+gm.core = require("./rpg/core_s");
 gm.mysql = require("./dbconnect.js");
+
+gm.mysql.connect(function () {});
+
+mp.events.add(
+  "incomingConnection",
+  (ip, serial, rgscName, rgscId, gameType) => {
+    global.player.social = rgscName;
+    player.setVariable("social", ip);
+    console.log(ip + serial + rgscName + gameType);
+  }
+);
 
 mp.events.add("playerJoin", (player) => {
   player.outputChatBox("RolePlayClub Test: Welcome Bro");
+
+  // Should be called after account exist in DB
+  mp.events.call("server:quiz:loginPlayer", player);
+
+  console.log(player.socialClub);
   player.loggedIn = true;
-  mp.events.call("server:loadZones", player);
+  player.chatTwtr = 0;
+  player.sqlID = 4;
+  player.job = null;
+  player.jobStage = null;
+  player.jobTick = null;
+  //player.quizAttempt = mp.events.call("server:loadZones", player);
   mp.events.call("server:createTrain", player);
+  player.call("playerLogin.initData");
   // player.model = mp.joaat("mp_f_freemode_01");
 });
 

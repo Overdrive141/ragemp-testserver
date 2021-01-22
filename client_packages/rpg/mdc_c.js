@@ -83,9 +83,6 @@ mp.keys.bind(MDCKey, false, function () {
 });
 
 mp.events.add("playerEnterVehicle", (vehicle, seat) => {
-  // Remove Later
-  showAlert("alert-green", "Healing", "heal");
-
   if (vehicle && seat == 0 && vehicle_has_mdc.indexOf(vehicle.model) != -1) {
     setTimeout(function () {
       mp.game.graphics.notify("Press ~g~[F4]~w~ to open the LSPD MDC");

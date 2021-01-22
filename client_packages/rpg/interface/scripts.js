@@ -18,29 +18,6 @@ let alerts = {
       $(elem).remove();
     }, 4400);
   },
-  // Lin - My Method
-  progress: function (style, text, type) {
-    let double_message = false;
-    let delay = 0;
-
-    $("#alerts__list .alert-message").each(function (index) {
-      if ($(this).text() == text) double_message = true;
-    });
-
-    if (double_message == true) return;
-    if (type === "repair") delay = 10000;
-    else if (type === "heal") delay = 5000;
-
-    let elem = $(`
-			<div class="alert-message ${style}">${text}</div>
-		`);
-
-    $("#alerts__list").prepend(elem);
-
-    setTimeout(function () {
-      $(elem).remove();
-    }, delay);
-  },
 };
 
 let screen = {
@@ -275,5 +252,234 @@ let mdc = {
     mp.trigger("c:mdc:hideInfoWindow");
 
     // $("#mdc_callsResults").empty();
+  },
+};
+
+let quiz = {
+  question: "",
+  correctAnswer: "",
+  answers: [],
+  values: [],
+  rowCount: 0,
+  score: 0,
+
+  show: function (nextID, prevID) {
+    // $(".mdc_screens").css("display", "none");
+    $(`#${nextID}`).fadeIn(100);
+    $(`#${prevID}`).remove();
+    // $("#reg__quiz__box_2").empty();
+    // $(id).css("display", "inline");
+    // mp.trigger("client:mdc:fetchCallList");
+  },
+  close: function () {
+    mp.trigger("client:quiz:hideRegQuiz", true);
+  },
+  next: function (page, nextID, prevID) {
+    // TODO: Change it to subitmaybe.
+
+    if (page == 1) {
+      let q1 = parseInt(
+        $("input[name='reg_quiz_test__question_1']:checked").val()
+      );
+      let q2 = parseInt(
+        $("input[name='reg_quiz_test__question_2']:checked").val()
+      );
+      let q3 = parseInt(
+        $("input[name='reg_quiz_test__question_3']:checked").val()
+      );
+      let q4 = parseInt(
+        $("input[name='reg_quiz_test__question_4']:checked").val()
+      );
+      let q5 = parseInt(
+        $("input[name='reg_quiz_test__question_5']:checked").val()
+      );
+
+      if (isNaN(q1)) return;
+      if (isNaN(q2)) return;
+      if (isNaN(q3)) return;
+      if (isNaN(q4)) return;
+      if (isNaN(q5)) return;
+
+      this.score = q1 + q2 + q3 + q4 + q5;
+
+      this.show(nextID, prevID);
+    } else if (page == 2) {
+      let q6 = parseInt(
+        $("input[name='reg_quiz_test__question_6']:checked").val()
+      );
+      let q7 = parseInt(
+        $("input[name='reg_quiz_test__question_7']:checked").val()
+      );
+      let q8 = parseInt(
+        $("input[name='reg_quiz_test__question_8']:checked").val()
+      );
+      let q9 = parseInt(
+        $("input[name='reg_quiz_test__question_9']:checked").val()
+      );
+      let q10 = parseInt(
+        $("input[name='reg_quiz_test__question_10']:checked").val()
+      );
+
+      if (isNaN(q6)) return;
+      if (isNaN(q7)) return;
+      if (isNaN(q8)) return;
+      if (isNaN(q9)) return;
+      if (isNaN(q10)) return;
+
+      this.score = this.score + q6 + q7 + q8 + q9 + q10;
+      this.show(nextID, prevID);
+    }
+  },
+  submit: function () {
+    let q11 = parseInt(
+      $("input[name='reg_quiz_test__question_11']:checked").val()
+    );
+    let q12 = parseInt(
+      $("input[name='reg_quiz_test__question_12']:checked").val()
+    );
+
+    if (isNaN(q11)) return;
+    if (isNaN(q12)) return;
+
+    this.score = this.score + q11 + q12;
+
+    mp.trigger("client:quiz:submitQuiz", this.score);
+  },
+  loadQuiz: function (questionData) {
+    questionData = JSON.parse(questionData);
+
+    for (let i = 0; i < questionData.length; i++) {
+      question = questionData[i].question;
+      // let correct = answers.indexOf(questionData[i].correct);
+      // correctAnswer = questionData[i].answers[questionData[i].correct]; Discontinued
+
+      // if (!this.answers.includes(correct)) {
+      //   answers = [
+      //     questionData[i].answers[i],
+      //     questionData[i].answers[i + 1],
+      //     questionData[i].answers[i + 2],
+      //     //questionData[i].answers[i + 3],
+      //   ];
+      // } Discontinued
+
+      answers = [
+        questionData[i].answers[0][0],
+        questionData[i].answers[1][0],
+        questionData[i].answers[2][0],
+        questionData[i].answers[3][0],
+      ];
+
+      values = [
+        questionData[i].answers[0][1],
+        questionData[i].answers[1][1],
+        questionData[i].answers[2][1],
+        questionData[i].answers[3][1],
+      ];
+
+      let questionElem = $(
+        `<div class="info-box-subheader">${i + 1}. ${question}</div>`
+      );
+
+      let answersElem = $(`
+      <input type="radio"  id="reg_quiz_test__row${
+        this.rowCount
+      }" name="reg_quiz_test__question_${i + 1}" value="${values[0]}">
+      <label for="reg_quiz_test__row${
+        this.rowCount
+      }" class="info-box-link-radio">${answers[0]}</label><br>
+      <input type="radio"  id="reg_quiz_test__row${
+        this.rowCount + 1
+      }" name="reg_quiz_test__question_${i + 1}" value="${values[1]}">
+      <label for="reg_quiz_test__row${
+        this.rowCount + 1
+      }" class="info-box-link-radio">${answers[1]}</label><br>
+      <input type="radio"  id="reg_quiz_test__row${
+        this.rowCount + 2
+      }" name="reg_quiz_test__question_${i + 1}" value="${values[2]}">
+      <label for="reg_quiz_test__row${
+        this.rowCount + 2
+      }" class="info-box-link-radio">${answers[2]}</label><br>
+      <input type="radio"  id="reg_quiz_test__row${
+        this.rowCount + 3
+      }" name="reg_quiz_test__question_${i + 1}" value="${values[3]}">
+      <label for="reg_quiz_test__row${
+        this.rowCount + 3
+      }" class="info-box-link-radio">${answers[3]}</label><br>
+      `);
+
+      // mp.trigger("c:mdc:testMethod", this.rowCount);
+      $("#reg__quiz__box_2").append(questionElem, answersElem);
+      // $("#reg__quiz__box_1").append();
+
+      // $("#reg_quiz__box").append(correctElem);
+
+      mp.trigger("c:mdc:testMethod");
+      this.rowCount += 4;
+    }
+
+    $("#reg__quiz__box_2").append(
+      $(`<div class="info-box-btns">
+   <span class="btn-medium btn-purple" onclick="quiz.next(1, 'reg__quiz__box_3', 'reg__quiz__box_2')">Next</span>
+  </div>`)
+    );
+  },
+};
+
+let timeoutBox = {
+  // Lin - My Method - MDC DELAY
+  delay: 0,
+  interval: null,
+
+  message: function (style, text, time) {
+    let double_message = false;
+
+    $("#alerts__list .alert-progress").each(function (index) {
+      if ($(this).text() == text) double_message = true;
+    });
+
+    if (double_message == true) return;
+
+    if (this.interval != null) clearInterval(this.interval);
+
+    let elem = $(`
+			<div class="alert-progress ${style}" id="alert_box__timeout">${text}. Please wait for ${time} seconds</div>
+		`);
+
+    let cancelBtn = $(
+      `<span class="btn-medium btn-red btn-bottom-center" id="alert_box__timeout_btnCancel" onclick="timeoutBox.stopDelay()">Cancel</span>`
+    );
+
+    $("#alerts__list").prepend(elem);
+    $("#alerts__list").append(cancelBtn);
+
+    this.interval = setInterval(function () {
+      if (timeoutBox.delay > 1) {
+        timeoutBox.delay--;
+        $(`#alert_box__timeout`).html(
+          `${text}. Please wait for ${timeoutBox.delay} seconds`
+        );
+      } else {
+        clearInterval(timeoutBox.interval);
+        timeoutBox.interval = null;
+        $("#alert_box__timeout").remove();
+        $("#alert_box__timeout_btnCancel").remove();
+      }
+    }, 1000);
+
+    this.delay = time;
+
+    //   setTimeout(function () {
+    //     $(elem).remove();
+    //     $(cancelBtn).remove();
+    //   }, time);
+  },
+  stopDelay: function () {
+    if (this.interval != null) {
+      clearInterval(this.interval);
+      this.interval = null;
+    }
+    mp.trigger("c:utils:cancelBlockedControls");
+    $("#alert_box__timeout").remove();
+    $("#alert_box__timeout_btnCancel").remove();
   },
 };

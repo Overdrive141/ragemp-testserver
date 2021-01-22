@@ -1,7 +1,23 @@
 client_packages/dlcpacks
 client_packages/node_modules
+client_packages/rpg/tablet
+client_packages/rpg/carchopping_c.js
+client_packages/rpg/weapon_train_c.js
+client_packages/rpg/interface/fonts
+client_packages/rpg/interface/images
+client_packages/rpg/interface/jquery.min.js
+client_packages/rpg/interface/jquery-ui.min.js
+client_packages/rpg/interface/qrcode.js
+client_packages/rpg/interface/rangeslider.css
+client_packages/rpg/interface/rangeslider.min.js
 
 packages/module/node_modules
+packages/module/dbconnect.js
+packages/module/rpg/blackmarket_s.js
+packages/module/rpg/carchopping_s.js
+packages/module/rpg/druglab_s.js
+packages/module/rpg/police_s.js
+
 
 ArmyEMS/
 backup/

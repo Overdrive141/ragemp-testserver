@@ -4317,3 +4317,60 @@ td {
   margin-left: 10rem;
   margin-right: 10rem;
 }
+
+/* ChopShop Beings */
+.alert-progress {
+  width: 200rem;
+  padding: 20rem;
+  padding-left: 65rem;
+  background-color: #000000ad;
+  border-radius: 10rem;
+  text-align: center;
+  color: white;
+  margin: 0 auto;
+  border: 2rem solid;
+  margin-bottom: 15rem;
+
+  /* animation-name: alert-progress-anim;
+  animation-timing-function: linear;
+  animation-fill-mode: both; */
+
+  transform: scale(1);
+  opacity: 1;
+
+  background-size: 40rem;
+  background-repeat: no-repeat;
+  background-position: left 15rem center;
+}
+.alert-progress:not(:first-child) {
+  zoom: 0.9;
+  margin-right: 0rem;
+}
+@keyframes alert-progress-anim {
+  5% {
+    transform: scale(1.25);
+    opacity: 1;
+  }
+  10% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1);
+  }
+  90% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  95% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+.alert-yellow {
+  border-color: #e8f392;
+  background-image: url(images/icons/alert-yellow.svg);
+}

@@ -12,11 +12,13 @@ global.JOB_MINER = 5;
 global.JOB_PILOT = 6;
 global.JOB_LUMBERJACK = 7;
 global.JOB_DRUGMAKER = 8;
+global.JOB_CARCHOPPING = 9;
 
 global.JOB_LEVEL_BOOST = 10;
 
 global.BLOCK_CONTROLS = false;
 global.BLOCK_CONTROLS_DURING_ANIMATION = false;
+global.BLOCK_CONTROLS_CAR_MOVEMENT = false; // Carchopping
 
 global.ENABLE_VOICE_WITH_CURSOR = false;
 
@@ -50,6 +52,11 @@ require("./rpg/druglab_c.js");
 require("./rpg/teleports_c.js");
 require("./rpg/vehicles_c.js");
 require("./rpg/gangzones_c.js");
+require("./rpg/tablet/index.js");
+// require("./rpg/carchopping_c.js"); // Carchopping
+require("./rpg/quiz_c.js");
+require("./rpg/utils_c.js");
+require("./rpg/blackout_c.js");
 //require("./rpg/weapon_train_c.js");
 // require("./voice_c");
 
@@ -57,22 +64,30 @@ require("./rpg/gangzones_c.js");
 // mp.players.local.model = "mp_f_freemode_01";
 mp.gui.cef = mp.browsers.new("package://rpg/interface/index.html");
 
-// const localPlayer = mp.players.local;
-// let genderHash = "mp_m_freemode_01"wa
-// if (gender != "Male")
-//   genderHash = "mp_f_freemode_01"
-// let genderModel = mp.game.joaat(genderHash)
-// localPlayer.model = genderModel
-
 mp.events.add("showAlert", (data) => {
   var json_str = JSON.parse(data);
   global.showAlert(json_str[0], json_str[1]);
 });
+// Lin - Delay
+mp.events.add("showTimeoutBox", (data) => {
+  var json_str = JSON.parse(data);
+  global.showTimeoutBox(json_str[0], json_str[1], json_str[2]);
+});
 
-global.showAlert = function (style, message, type) {
+global.showAlert = function (style, message) {
+  mp.gui.cef.execute('alerts.message("' + style + '", "' + message + '");');
+};
+// Lin - Delay
+global.showTimeoutBox = function (style, message, time) {
   mp.gui.cef.execute(
-    'alerts.progress("' + style + '", "' + message + '", "' + type + '");'
+    'timeoutBox.message("' + style + '", "' + message + '", "' + time + '");'
   );
+  BLOCK_CONTROLS = true;
+  BLOCK_CONTROLS_CAR_MOVEMENT = true;
+  setTimeout(() => {
+    BLOCK_CONTROLS = false;
+    BLOCK_CONTROLS_CAR_MOVEMENT = false;
+  }, time * 1000);
 };
 
 mp.events.add("render", () => {
@@ -101,6 +116,9 @@ mp.events.add("render", () => {
   // controls
   if (BLOCK_CONTROLS == true) {
     //mp.game.invoke('0x5E6CC07646BBEAB8', mp.players.local.handle, true); // DISABLE_PLAYER_FIRING
+
+    // Input Group: 0 (MOVE), 2 (WHEEL)
+    // Controls:
 
     mp.game.controls.disableControlAction(0, 257, true); // FIRING
 
@@ -137,6 +155,11 @@ mp.events.add("render", () => {
     mp.game.controls.disableControlAction(2, 263, true);
     mp.game.controls.disableControlAction(2, 264, true);
   }
+  // Carchopping Lin
+  if (BLOCK_CONTROLS_CAR_MOVEMENT == true) {
+    mp.game.controls.disableControlAction(0, 71, true);
+    mp.game.controls.disableControlAction(0, 72, true);
+  }
 
   // always end
   // if (player.bubbleText) {
@@ -164,6 +187,17 @@ mp.events.add("render", () => {
   //   }
   // }
 });
+
+// init
+mp.events.add("playerLogin.initData", function () {
+  mp.events.call("client:tablet:init");
+
+  mp.storage.data.loginName = localPlayer.name;
+});
+
+global.getRandomInt = function (min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 
 //bone attach
 
